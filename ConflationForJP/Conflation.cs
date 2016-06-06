@@ -10,7 +10,7 @@ namespace ConflationForJP
 {
     class Conflation
     {
-        private static int CONFLATION_THRESHOLD_IN_MS = 2000;
+        private static int CONFLATION_THRESHOLD_IN_MS = 1500;
         private int timeout = CONFLATION_THRESHOLD_IN_MS;
         private Ticker ticker;
        // private long startTime = 0;
@@ -66,12 +66,13 @@ namespace ConflationForJP
                     double ms = currentTime.Subtract(startTime).TotalMilliseconds;
                     int timePassed = Convert.ToInt32(ms);
                     Price += ticker.Update;
+
                     if (timePassed>= CONFLATION_THRESHOLD_IN_MS)
                     {
                         Console.WriteLine(DateTime.Now.ToLongTimeString() + "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + ticker.Symbol + " Latest pricme:" + price);
                         if (priceUpdateEvent !=  null)
                         {
-                            Console.WriteLine(DateTime.Now.ToLongTimeString() + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + ticker.Symbol + " Latest pricme:" + price);
+                            //Console.WriteLine(DateTime.Now.ToLongTimeString() + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + ticker.Symbol + " Latest pricme:" + price);
                             priceUpdateEvent(this, DateBoldEventArgs.Empty);
                         }
                           

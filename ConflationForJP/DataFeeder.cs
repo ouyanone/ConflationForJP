@@ -26,7 +26,6 @@ namespace ConflationForJP
 
         public void startFeeder()
         {
-            Console.WriteLine("==============================================444444444444 =====================================");
             Object feederLocker = new object();
             foreach (Ticker ticker in  tickerList)
             {
@@ -36,9 +35,17 @@ namespace ConflationForJP
 
         private void feedTicker(Ticker ticker, Object feederLock)
         {
-            Console.WriteLine("==============================================sending after =====================================");
             sendTickerUpdate(ticker, 0, ticker.Update, feederLock);
-            Random random = new Random();
+            Random random;
+            if (ticker.Symbol.Equals("C"))
+            {
+                random = new Random(Environment.TickCount);
+            } else
+            {
+                random = new Random(Environment.TickCount/4);
+            }
+            
+           
             while (true)
             {
                 // random interval to send the stock price update
@@ -60,7 +67,7 @@ namespace ConflationForJP
                 }
             }
 
-            Console.WriteLine(DateTime.Now.ToLongTimeString()+":"+DateTime.Now.Millisecond+"::"+ticker.Symbol+ "-------------sending after "+interval+"ms change "+change);
+            //Console.WriteLine(DateTime.Now.ToLongTimeString()+":"+DateTime.Now.Millisecond+"::"+ticker.Symbol+ "-------------sending after "+interval+"ms change "+change);
 
             if (change != 0.00)
             {

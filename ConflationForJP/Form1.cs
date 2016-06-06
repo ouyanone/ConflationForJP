@@ -181,7 +181,7 @@ namespace ConflationForJP
         }
         private void UpdateFeederUI(Ticker ticker)
         {
-            this.AddtoFeederUI(DateTime.Now.ToLongDateString()+" "+ DateTime.Now.Millisecond+":: " +ticker.Symbol+" is updated:  "+Convert.ToString(ticker.Update));
+            this.AddtoFeederUI(DateTime.Now.ToShortDateString()+" "+ DateTime.Now.ToLongTimeString() +" "+ DateTime.Now.Millisecond+":: " +ticker.Symbol+" is updated:  "+Convert.ToString(ticker.Update));
         }
 
         private void AddtoFeederUI(string text)
@@ -210,6 +210,11 @@ namespace ConflationForJP
         }
 
         private void backgroundWorkerDataFeeder_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
         {
 
         }

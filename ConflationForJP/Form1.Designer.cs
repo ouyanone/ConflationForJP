@@ -137,6 +137,7 @@ namespace ConflationForJP
             this.label5.Size = new System.Drawing.Size(158, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Stock real time Updating Queue";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // Form1
             // 
